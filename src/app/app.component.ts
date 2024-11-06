@@ -14,13 +14,12 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, AppComponent, ProductsComponent,CommonModule, HttpClientModule,],
+  imports: [RouterOutlet, NavComponent, AppComponent, ProductsComponent,CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
 export class AppComponent {
-
   imgParent = '';
   showImg = true;
 
