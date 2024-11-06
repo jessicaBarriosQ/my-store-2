@@ -2,6 +2,7 @@
   (load)="imgLoaded()"
   (error)="imgError()"
   [src]="img"
+  [alt]="alt"
   *ngIf="img; else elseImg"
 />
 <!-- <h3>{{ counter }}</h3> -->

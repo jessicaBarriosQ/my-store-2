@@ -10,9 +10,10 @@ import { Component, EventEmitter, Input, OnInit, OnChanges, AfterViewInit, OnDes
 })
 export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
-  img: string = '';
 
-  @Input('img')
+  @Input() img: string = '';
+
+
   set changeImg(newImg: string) {
     this.img = newImg;
     console.log('change just img  =>' ,this.img);

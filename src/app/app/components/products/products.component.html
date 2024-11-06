@@ -11,8 +11,18 @@
   ></app-product>
 </div>
 <div class="product-detail" [class.active]="showProductDetail">
-  <div>
+  <div *ngIf="productChosen">
     <button>close</button>
-    contenido
+
+    <ngx-slick-carousel
+      class="carousel"
+      [config]="{ slidesToShow: 3, slidesToScroll: 1, infinite: true }"
+    >
+      <div ngxSlickItem *ngFor="let img of productChosen.images">
+        <img [src]="img" alt="Product Image" />
+      </div>
+    </ngx-slick-carousel>
+
+    <h1>{{ productChosen.description }}</h1>
   </div>
 </div>
