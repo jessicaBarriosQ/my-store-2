@@ -6,17 +6,21 @@ import { Product } from './app/models/product.model';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { ProductsService } from './services/products.service';
-import { SwiperComponent } from "swiper/angular";
-import { SwiperModule } from 'swiper/angular';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
+
+
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, AppComponent, ProductsComponent,CommonModule, HttpClientModule],
+  imports: [RouterOutlet, NavComponent, AppComponent, ProductsComponent,CommonModule, HttpClientModule,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
 export class AppComponent {
+
   imgParent = '';
   showImg = true;
 
