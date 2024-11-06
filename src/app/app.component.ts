@@ -6,7 +6,8 @@ import { Product } from './app/models/product.model';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { ProductsService } from './services/products.service';
-
+import { SwiperComponent } from "swiper/angular";
+import { SwiperModule } from 'swiper/angular';
 @Component({
   selector: 'app-root',
   standalone: true,

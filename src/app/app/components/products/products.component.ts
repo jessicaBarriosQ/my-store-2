@@ -16,20 +16,22 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit{
 
+
   myShoppingCart: Product[] = [];
   total = 0;
 
-  products: Product[] = [ ];
+  products: Product[] = [];
+  showProductDetail = false;
 
   constructor(
     private StoreService: StoreService,
-    private ProductsService: ProductsService
+    private productsService: ProductsService
   ) {
     this.myShoppingCart = this.StoreService.getShoppingCart();
    }
 
   ngOnInit(): void {
-    this.ProductsService.getAllProducts()
+    this.productsService.getAllProducts()
       .subscribe(data => {
         this.products = data;
       });
@@ -39,6 +41,17 @@ export class ProductsComponent implements OnInit{
   {
     this.StoreService.addProducts(product)
     this.total = this.StoreService.getTotal();
+  }
+
+  toggleProductDetail() {
+    this.showProductDetail = !this.showProductDetail;
+  }
+
+  onShowDetail(id: string) {
+    this.productsService.getProduct(id).subscribe(data => {
+      console.log('product', data)
+
+    })
   }
 
 

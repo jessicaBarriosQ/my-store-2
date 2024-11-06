@@ -1,0 +1,49 @@
+.products--grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas por fila */
+  gap: 20px; /* Espacio entre productos */
+  justify-items: center; /* Centra los productos horizontalmente dentro de sus celdas */
+  align-items: center; /* Centra los productos verticalmente dentro de sus celdas */
+  text-align: center; /* Centra el texto dentro de las celdas si es necesario */
+}
+
+@media (max-width: 1024px) {
+  .products--grid {
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* 3 columnas por fila en pantallas medianas (tabletas) */
+  }
+}
+
+@media (max-width: 768px) {
+  .products--grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* 2 columnas por fila en pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .products--grid {
+    grid-template-columns: 1fr; /* 1 columna por fila en móviles */
+  }
+}
+
+.product-detail {
+  position: fixed;
+  top: 0;
+  left: 60%;
+  bottom: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: all ease-out 0.5s;
+  transform: translateX(100%);
+  &.active {
+    transform: translateX(0);
+  }
+}
