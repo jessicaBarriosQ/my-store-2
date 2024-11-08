@@ -1,5 +1,6 @@
 <p>La cantidad {{ myShoppingCart.length }}</p>
 <p>El total es: ${{ total }}</p>
+<button (click)="createNewProduct()">created</button>
 <button (click)="toggleProductDetail()">click</button>
 
 <div class="products--grid">
@@ -9,6 +10,7 @@
     (addedProduct)="onAddToShoppingCart($event)"
     (showProduct)="onShowDetail($event)"
   ></app-product>
+  <button (click)="loadMore()">load more</button>
 </div>
 <div class="product-detail" [class.active]="showProductDetail">
   <div *ngIf="productChosen">
@@ -24,5 +26,7 @@
     </ngx-slick-carousel>
 
     <h1>{{ productChosen.description }}</h1>
+    <button (click)="UpdateProduct()">editar</button>
+    <button (click)="deleteProduct()">delete</button>
   </div>
 </div>

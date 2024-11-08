@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { CreateProductDTO, Product, UpdateProductDTO } from '../../models/product.model';
 import { ProductComponent } from '../product/product.component';
 import { CommonModule } from '@angular/common';
 
@@ -38,6 +38,9 @@ export class ProductsComponent implements OnInit{
       name: '',
     },
   };
+  limit = 10;
+  offset = 0;
+
 
   constructor(
     private StoreService: StoreService,
@@ -48,7 +51,7 @@ export class ProductsComponent implements OnInit{
    }
 
   ngOnInit(): void {
-    this.productsService.getAllProducts()
+    this.productsService.getProductBypages(10,0)
       .subscribe(data => {
         this.products = data;
       });
@@ -73,6 +76,52 @@ export class ProductsComponent implements OnInit{
 
 
     })
+  }
+
+  createNewProduct() {
+    const product: CreateProductDTO = {
+      title: 'Nuevo producto',
+      description: 'bla bla bla',
+      images: [''],
+      price: 1000,
+      categoryId: 2,
+    }
+    this.productsService.create(product).subscribe(data => {
+      console.log('created', data);
+      this.products.unshift(data);
+    });
+  }
+
+  UpdateProduct() {
+    const changes: UpdateProductDTO ={
+      title: 'nuevo title',
+    }
+    const id = this.productChosen.id;
+    this.productsService.update(id, changes).subscribe(data => {
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+      this.products[productIndex] = data;
+    })
+  }
+
+  deleteProduct() {
+    const id = this.productChosen.id;
+    this.productsService.delete(id).subscribe(()=> {
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+      this.products.splice(productIndex, 1);
+      this.showProductDetail = false;
+
+    });
+  }
+
+  loadMore() {
+
+    this.productsService.getProductBypages(10,0)
+      .subscribe(data => {
+        this.products = this.products.concat(data);
+        this.offset += this.limit;
+      });
+
+
   }
 
 
